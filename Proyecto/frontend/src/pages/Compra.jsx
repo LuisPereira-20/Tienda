@@ -4,7 +4,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Enlace from "../assets/Backend";
 import axios from "axios";
 import ProductoCarrito from "../components/ProductoCarrito";
-import { get } from "mongoose";
+
 
 
 const Compra = () => {
@@ -15,7 +15,7 @@ const Compra = () => {
 
   const getOrder = async () => {
     try {
-      const response = await axios.get(`${url.backend}/purchases/${id}`,
+      const response = await axios.get(`${Enlace.backend}/purchases/${id}`,
         {
           headers: {
             "Authorization": `Bearer ${auth.getAccessToken()}`
@@ -45,7 +45,7 @@ const Compra = () => {
       <h2 className="text-lg">Creada: {new Date(Compra.FechaCreacion).toLocaleString()}</h2>
       <div className="flex flex-col justify-center items-center gap-4">
         {Object.keys(Compra).length && order.products.map((producto) => (
-          <ProductOrderCart key={producto._id} producto={producto} />
+          <ProductoCarrito key={producto._id} producto={producto} />
         ))}
       </div>
       <h2 className="text-2xl">Total: ${Compra.total}</h2>
